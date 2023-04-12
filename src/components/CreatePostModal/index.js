@@ -8,9 +8,11 @@ import { createPost, hideModal } from '../../redux/actions';
 
 export default function CreatePostModal() {
   const [data, setData] = React.useState({
-    title: '',
-    content: '',
-    attachment: '',
+    ProductName: '',
+    SupplierID: '',
+    CategoryID: '',
+    QuantityPerUnit: '',
+    UnitPrice: '',
   });
   const dispatch = useDispatch();
   const { isShow } = useSelector(modalState$);
@@ -19,9 +21,11 @@ export default function CreatePostModal() {
   const onClose = React.useCallback(() => {
     dispatch(hideModal());
     setData({
-      title: '',
-      content: '',
-      attachment: '',
+      ProductName: '',
+      SupplierID: '',
+      CategoryID: '',
+      QuantityPerUnit: '',
+      UnitPrice: '',
     });
   }, [dispatch]);
 
@@ -32,30 +36,44 @@ export default function CreatePostModal() {
 
   const body = (
     <div className={classes.paper} id='simple-modal-title'>
-      <h2>Create New Post</h2>
+      <h2>Create New Product</h2>
       <form noValidate autoComplete='off' className={classes.form}>
         <TextField
-          className={classes.title}
+          className={classes.ProductName}
           required
-          label='Title'
-          value={data.title}
-          onChange={(e) => setData({ ...data, title: e.target.value })}
+          label='ProductName'
+          value={data.ProductName}
+          onChange={(e) => setData({ ...data, ProductName: e.target.value })}
         />
-        <TextareaAutosize
-          className={classes.textarea}
-          rowsMin={10}
-          rowsMax={15}
-          placeholder='Content...'
-          value={data.content}
-          onChange={(e) => setData({ ...data, content: e.target.value })}
+         <TextField
+          className={classes.SupplierID}
+          required
+          label='SupplierID'
+          value={data.SupplierID}
+          onChange={(e) => setData({ ...data, SupplierID: e.target.value })}
         />
-        <FileBase64
-          accept='image/*'
-          multiple={false}
-          type='file'
-          value={data.attachment}
-          onDone={({ base64 }) => setData({ ...data, attachment: base64 })}
+         <TextField
+          className={classes.CategoryID}
+          required
+          label='CategoryID'
+          value={data.CategoryID}
+          onChange={(e) => setData({ ...data, CategoryID: e.target.value })}
         />
+         <TextField
+          className={classes.QuantityPerUnit}
+          required
+          label='QuantityPerUnit'
+          value={data.QuantityPerUnit}
+          onChange={(e) => setData({ ...data, QuantityPerUnit: e.target.value })}
+        />
+         <TextField
+          className={classes.UnitPrice}
+          required
+          label='UnitPrice'
+          value={data.UnitPrice}
+          onChange={(e) => setData({ ...data, UnitPrice: e.target.value })}
+        />
+      
         <div className={classes.footer}>
           <Button
             variant='contained'

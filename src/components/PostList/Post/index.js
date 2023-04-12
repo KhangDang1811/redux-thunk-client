@@ -20,17 +20,12 @@ export default function Post({ post }) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const onLikeBtnClick = React.useCallback(() => {
-    dispatch(
-      updatePost.updatePostRequest({ ...post, likeCount: post.likeCount + 1 })
-    );
-  }, [dispatch, post]);
 
   return (
     <Card>
       <CardHeader
         avatar={<Avatar>A</Avatar>}
-        title={post.author}
+        title={post.ProductName}
         subheader={moment(post.updatedAt).format('HH:MM MMM DD,YYYY')}
         action={
           <IconButton>
@@ -38,24 +33,19 @@ export default function Post({ post }) {
           </IconButton>
         }
       />
-      <CardMedia
-        image={post.attachment || ''}
-        title='Title'
-        className={classes.media}
-      />
       <CardContent>
         <Typography variant='h5' color='textPrimary'>
-          {post.title}
+        SupplierID:  {post.SupplierID}
         </Typography>
         <Typography variant='body2' component='p' color='textSecondary'>
-          {post.content}
+        CategoryID:  {post.CategoryID}
         </Typography>
       </CardContent>
       <CardActions>
-        <IconButton onClick={onLikeBtnClick}>
+        <IconButton >
           <FavoriteIcon />
           <Typography component='span' color='textSecondary'>
-            {`${post.likeCount} likes`}
+            {`${post.UnitPrice} $`}
           </Typography>
         </IconButton>
       </CardActions>
